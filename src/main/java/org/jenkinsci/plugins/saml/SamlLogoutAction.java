@@ -38,7 +38,9 @@ import jenkins.model.Jenkins;
 @Extension
 public class SamlLogoutAction implements UnprotectedRootAction {
 
-    /** The URL of the action. */
+    /**
+     * The URL of the action.
+     */
     static final String POST_LOGOUT_URL = "samlLogout";
 
     @Override
@@ -59,7 +61,7 @@ public class SamlLogoutAction implements UnprotectedRootAction {
 
     @Restricted(NoExternalUse.class) // jelly only
     public String getSamlURL() {
-        SecurityRealm r = Jenkins.getActiveInstance().getSecurityRealm();
+        SecurityRealm r = Jenkins.getInstance().getSecurityRealm();
         if (r instanceof SamlSecurityRealm) {
             SamlSecurityRealm smlsr = (SamlSecurityRealm) r;
             return smlsr.getIdpMetadata();
